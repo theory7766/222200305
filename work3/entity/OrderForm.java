@@ -3,21 +3,23 @@ package com.west2.entity;
 import java.sql.Time;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderForm {
     // 订单编号
     private int no;
     // 商品信息
-    private List goods_id;
+    private List<Integer> goods_id;
     // 下单时间
-    private LocalDate ordertime;
+    private LocalDateTime ordertime;
     // 订单价格
     private double price;
 
-    public OrderForm() {}
+    public OrderForm() {
+    }
 
-    public OrderForm(int no, List goods_id, LocalDate ordertime, double price) {
+    public OrderForm(int no, List<Integer> goods_id, LocalDateTime ordertime, double price) {
         this.no = no;
         this.goods_id = goods_id;
         this.ordertime = ordertime;
@@ -26,6 +28,7 @@ public class OrderForm {
 
     /**
      * 获取订单编号
+     *
      * @return no
      */
     public int getNo() {
@@ -34,6 +37,7 @@ public class OrderForm {
 
     /**
      * 设置订单编号
+     *
      * @param no
      */
     public void setNo(int no) {
@@ -42,38 +46,43 @@ public class OrderForm {
 
     /**
      * 获取商品信息
+     *
      * @return goods_id
      */
-    public List getGoodsId() {
+    public List<Integer> getGoodsId() {
         return goods_id;
     }
 
     /**
      * 设置商品信息
+     *
      * @param goods_id
      */
-    public void setGoods(List goods_id) {
+    public void setGoods(List<Integer> goods_id) {
         this.goods_id = goods_id;
     }
 
     /**
      * 获取下单时间
+     *
      * @return ordertime
      */
-    public LocalDate getOrdertime() {
+    public LocalDateTime getOrdertime() {
         return ordertime;
     }
 
     /**
      * 设置下单时间
+     *
      * @param ordertime
      */
-    public void setOrdertime(LocalDate ordertime) {
+    public void setOrdertime(LocalDateTime ordertime) {
         this.ordertime = ordertime;
     }
 
     /**
      * 获取订单价格
+     *
      * @return price
      */
     public double getPrice() {
@@ -82,6 +91,7 @@ public class OrderForm {
 
     /**
      * 设置订单价格
+     *
      * @param price
      */
     public void setPrice(double price) {
@@ -89,7 +99,7 @@ public class OrderForm {
     }
 
     public String toString() {
-        return "订单编号 : " + no + "\n"+"商品编号："+goods_id+
+        return "订单编号 : " + no + "\n" + "商品编号：" + goods_id +
                 "\n下单时间 : " + ordertime + "\n订单价格 : " + price;
     }
 }

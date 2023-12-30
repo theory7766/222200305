@@ -8,7 +8,8 @@ public class Goods {
     // 商品价格
     private double price;
 
-    public Goods() {}
+    public Goods() {
+    }
 
     public Goods(int sno, String name, double price) {
         this.no = sno;
@@ -18,6 +19,7 @@ public class Goods {
 
     /**
      * 获取商品编号
+     *
      * @return no
      */
     public int getNo() {
@@ -26,6 +28,7 @@ public class Goods {
 
     /**
      * 设置商品编号
+     *
      * @param no
      */
     public void setNo(int no) {
@@ -34,6 +37,7 @@ public class Goods {
 
     /**
      * 获取商品名字
+     *
      * @return name
      */
     public String getName() {
@@ -42,6 +46,7 @@ public class Goods {
 
     /**
      * 设置商品名字
+     *
      * @param name
      */
     public void setName(String name) {
@@ -50,6 +55,7 @@ public class Goods {
 
     /**
      * 获取商品价格
+     *
      * @return price
      */
     public double getPrice() {
@@ -58,6 +64,7 @@ public class Goods {
 
     /**
      * 设置商品价格
+     *
      * @param price
      */
     public void setPrice(double price) {

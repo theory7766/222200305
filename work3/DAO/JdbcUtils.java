@@ -42,40 +42,18 @@ public class JdbcUtils {
     }
 
     // 释放连接资源
-    public static void release(Connection conn, PreparedStatement pst,Statement st, ResultSet rs)
+    public static void release(Connection conn, PreparedStatement pst, Statement st, ResultSet rs)
             throws MyException {
-        if (rs != null) {
-            try {
-                rs.close();
-            } catch (SQLException e) {
+        try {
+            if (rs!=null)  rs.close();
+            if (pst!=null) pst.close();
+            if (st!=null) st.close();
+            if (conn!=null) conn.close();
+        } catch (SQLException e) {
                 e.printStackTrace();
-                throw new MyException("释放ResultSet失败！");
-            }
+                throw new MyException("释放资源失败！");
         }
-        if (pst != null) {
-            try {
-                pst.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new MyException("释放PreparedStatement失败！");
-            }
-        }
-        if (st != null) {
-            try {
-                st.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new MyException("释放Statement失败！");
-            }
-        }
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new MyException("释放Connection失败！");
-            }
-        }
+
     }
 
     /**
@@ -88,7 +66,7 @@ public class JdbcUtils {
      * @throws SQLException SQL异常
      */
     public static PreparedStatement handleSql(Connection con, String sql, Object[] param) throws SQLException {
-        PreparedStatement st = con.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+        PreparedStatement st = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
         int paramCnt = st.getParameterMetaData().getParameterCount();
         if (paramCnt != 0 && param != null && paramCnt == param.length) {
             for (int i = 0; i < paramCnt; i++) {
@@ -106,27 +84,23 @@ public class JdbcUtils {
      * @param param 对应的SQL语句的参数
      * @return SQL语句对应的数据表的影响的主键
      */
-    public static List update(Connection con, String sql, Object[] param,PreparedStatement pst,ResultSet rs) {
+    public static List update(Connection con, String sql, Object[] param, PreparedStatement pst, ResultSet rs) {
         List<Integer> result = new ArrayList<>();
         try {
-            con.setAutoCommit(false);//开启事务
-            con.setReadOnly(false);
             pst = handleSql(con, sql, param);
             pst.executeUpdate();
             rs = pst.getGeneratedKeys();
             int i = 0;
-            while (rs.next()){
+            while (rs.next()) {
                 int generatedKey = rs.getInt(1);
-                System.out.println(generatedKey);
+                //System.out.println("主键："+generatedKey);
                 result.add(generatedKey);
             }
-            con.commit();//业务完毕，提交事务
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
     }
-
 
 
     /**
@@ -137,13 +111,13 @@ public class JdbcUtils {
      * @param pst   PreparedStatement对象
      * @param rs    ResultSet结果集对象
      * @param param 对应的SQL语句的参数
-     * @return List<Object[]>
+     * @return List<Object [ ]>
      * @throws SQLException SQL异常
      */
-    public static List<Object[]> queryOrder(Connection con, String sql, PreparedStatement pst ,
+    public static List<Object[]> queryOrder(Connection con, String sql, PreparedStatement pst,
                                             ResultSet rs, Object[] param) throws SQLException {
-        List<Object[]> t=null;
-        ArrayListHandler rsh=new ArrayListHandler();
+        List<Object[]> t = null;
+        ArrayListHandler rsh = new ArrayListHandler();
         try {
             // 只读
             //con.setReadOnly(true);
@@ -160,18 +134,18 @@ public class JdbcUtils {
     /**
      * query 无参数查询方法
      *
-     * @param sql   要执行的sql语句
-     * @param st    Statement对象
-     * @param rs    ResultSet结果集对象
-     * @return List<Object[]>
+     * @param sql 要执行的sql语句
+     * @param st  Statement对象
+     * @param rs  ResultSet结果集对象
+     * @return List<Object [ ]>
      * @throws SQLException SQL异常
      */
     public static List<Object[]> queryOrder(String sql, Statement st, ResultSet rs) throws SQLException {
-        List<Object[]> t=null;
-        ArrayListHandler rsh=new ArrayListHandler();
-        try{
+        List<Object[]> t = null;
+        ArrayListHandler rsh = new ArrayListHandler();
+        try {
             rs = st.executeQuery(sql);
-            t=rsh.handle(rs);
+            t = rsh.handle(rs);
         } catch (SQLException e) {
             throw e;
         }
