@@ -1,0 +1,10 @@
+server:
+  port: 81
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/todolist
+    username: root
+    password: Lucy0311@
+    type: com.alibaba.druid.pool.DruidDataSource
+
