@@ -11,7 +11,7 @@ public class User  {
     // 头像
     private String avatar_url;
     // 注册时间
-    private DateTime created_at;
+    private String created_at;
 
     private String token;
 
@@ -19,12 +19,9 @@ public class User  {
     public User(String username,String password){
         this.username = username;
         this.password = password;
-        this.user_id = 0;
-        this.avatar_url = null;
-        this.created_at = DateTime.of(0);
     }
 
-    public User(String username, String password, int user_id, String avatar_url, DateTime created_at,String token) {
+    public User(String username, String password, int user_id, String avatar_url, String created_at,String token) {
         this.username = username;
         this.password = password;
         this.user_id = user_id;
@@ -105,7 +102,7 @@ public class User  {
      * 获取
      * @return created_at
      */
-    public DateTime getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
@@ -113,7 +110,7 @@ public class User  {
      * 设置
      * @param created_at
      */
-    public void setCreated_at(DateTime created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 

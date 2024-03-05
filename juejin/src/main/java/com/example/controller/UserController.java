@@ -22,14 +22,14 @@ public class UserController {
     private ArticleService articleService;
 
     // 用户注册
-    @PostMapping("/register/")
+    @PostMapping("/register")
     public Base userRegister(@RequestBody User user){
 //        System.out.println(user);
         userService.register(user);
         return Base.success();
     }
     // 用户登录
-    @PostMapping("/login/")
+    @PostMapping("/login")
     public LoginResult userLogin(@RequestBody User user){
         String token = userService.login(user);
         return new LoginResult(Code.SUCCESS,"success",token);
@@ -42,24 +42,24 @@ public class UserController {
         return new QueryRequest<>(Base.success(),user);
     }
     // 修改用户名
-    @PutMapping("/setup")
-    public Base updateUsername(HttpServletRequest request,@RequestParam String username){
+    @PutMapping("/setup/username")
+    public QueryRequest updateUsername(HttpServletRequest request,@RequestParam String username){
         int user_id = articleService.checkToken(request);
         userService.updateUsernameByUserId(user_id,username);
-        return Base.success();
+        return new QueryRequest(Base.success());
     }
     // 修改密码
-    @PutMapping("/setup")
-    public Base updatePassword(HttpServletRequest request,@RequestParam String password){
+    @PutMapping("/setup/password")
+    public QueryRequest updatePassword(HttpServletRequest request,@RequestParam String password){
         int user_id = articleService.checkToken(request);
         userService.updatePasswordByUserId(user_id,password);
-        return Base.success();
+        return new QueryRequest(Base.success());
     }
     // 修改头像
-    @PutMapping("/setup")
-    public Base updateAvatarUrl(HttpServletRequest request,@RequestParam String avatar_url){
+    @PutMapping("/setup/avatar_url")
+    public QueryRequest updateAvatarUrl(HttpServletRequest request,@RequestParam String avatar_url){
         int user_id = articleService.checkToken(request);
         userService.updateAvatarUrlByUserId(user_id,avatar_url);
-        return Base.success();
+        return new QueryRequest(Base.success());
     }
 }

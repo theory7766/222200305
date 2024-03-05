@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.text.SimpleDateFormat;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -38,7 +40,10 @@ public class UserServiceImpl implements UserService {
             user.setPassword(newPassword);
            // 将数据保存进用户表users中
             DateTime created_at = DateTime.now();
-            user.setCreated_at(created_at);
+            String mysqlFormat = "yyyy-MM-dd HH:mm:ss";
+            SimpleDateFormat sdf = new SimpleDateFormat(mysqlFormat);
+            String formattedDateTime = sdf.format(created_at);
+            user.setCreated_at(formattedDateTime);
             // 设置默认头像
             String avatar_url = "null";
             user.setAvatar_url(avatar_url);
@@ -60,7 +65,7 @@ public class UserServiceImpl implements UserService {
         }else {
            // 非首次认证
            String token = userDao.getToken(user.getUsername());
-            if (token == null) {
+            if (token == null || token.compareTo("NULL") == 0) {
 //                System.out.println("进行首次token制作保存：");
                 Sign sign = SecureUtil.sign(SignAlgorithm.MD5withRSA);
                 // 1.将签名数据转换为字节数组
@@ -69,6 +74,7 @@ public class UserServiceImpl implements UserService {
                 byte[] signed = sign.sign(data);
                 // 3.将签名通过base64转码解析为字符串格式
                 token = Base64Encoder.encode(signed);
+//                System.out.println(token);
                 // 4.保存到数据库中
                 userDao.setTokenByUsername(user.getUsername(), token);
             }

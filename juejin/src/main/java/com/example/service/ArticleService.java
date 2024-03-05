@@ -4,9 +4,11 @@ import com.example.domain.Article;
 import com.example.domain.Comment;
 import com.example.domain.User;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ArticleService {
 
     /**

@@ -23,7 +23,7 @@ public class ArticleController {
     @GetMapping("/homepage")
     public QueryRequest<Article> getArticleList(HttpServletRequest request,
                                                 @RequestParam Integer getHottest, @RequestParam Integer count){
-        articleService.checkToken(request);
+        int user_id = articleService.checkToken(request);
         List<Article> articles = articleService.getArticleList(getHottest,count);
         return new QueryRequest<Article>(Base.success(), articles,articles.size());
     }
@@ -52,9 +52,9 @@ public class ArticleController {
     }
     // 写文章
     @PostMapping("/write")
-    public Base writeArticle(HttpServletRequest request,@RequestBody Article article){
+    public QueryRequest writeArticle(HttpServletRequest request,@RequestBody Article article){
         int user_id = articleService.checkToken(request);
         articleService.insertArticle(user_id,article);
-        return Base.success();
+        return new QueryRequest(Base.success());
     }
 }

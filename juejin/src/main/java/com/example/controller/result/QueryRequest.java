@@ -17,6 +17,10 @@ public class QueryRequest<T> {
         this.base = base;
         this.data = new Data(task);
     }
+    public QueryRequest(Base base){
+        this.base = base;
+        this.data = null;
+    }
 
 
     /**

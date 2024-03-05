@@ -27,7 +27,7 @@ public interface UserDao {
     @Select("select token from users where username = #{username}")
     public String getToken(String username);
     // 按user_id查询用户信息
-    @Select("select * form users where user_id = #{user_id}")
+    @Select("select * from users where user_id = #{user_id}")
     public User getUserInformationByUserId(int user_id);
     // 修改user_id相应的username
     @Update("update users set username = #{username} where user_id = #{user_id}")

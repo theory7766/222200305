@@ -24,12 +24,13 @@ public class Comment {
     // 内容
     private String content;
     // 创建时间
-    private DateTime created_at;
+    private String created_at;
 
     public Comment() {
     }
 
-    public Comment(int comment_id, int user_id, String username, String avatar_url, int article_id, int parent_id, int like_count, int child_count, String content, DateTime created_at) {
+    public Comment(int comment_id, int user_id, String username, String avatar_url, int article_id, int parent_id,
+                   int like_count, int child_count, String content, String created_at) {
         this.comment_id = comment_id;
         this.user_id = user_id;
         this.username = username;
@@ -190,7 +191,7 @@ public class Comment {
      * 获取
      * @return created_at
      */
-    public DateTime getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
@@ -198,7 +199,7 @@ public class Comment {
      * 设置
      * @param created_at
      */
-    public void setCreated_at(DateTime created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 

@@ -58,14 +58,9 @@ getWrittenArticle：1返回我写过的文章列表，0返回我赞过的文章�
 
 前者直接按user_id从文章表里面返回，后者在user_like_article表中先获得article_id列表,再一个一个从文章表里面查询返回封装成列表。
 
-4. 修改信息：使用map接收参数
-已知user_id):
+4. 修改信息:已知user_id):
 用户名username：
 校验用户名是否重复，需同时修改用户表users
-
-密码password：加密后放入users表
-
-头像avatar_url：修改的是用户信息表users_information
 
 
 5.写文章：http://localhost:81/juejin/write
@@ -80,8 +75,8 @@ title，content，cover_url，加上user_id,created_at插入文章表
 ##2.设计数据库表
 1. 用户表users（用户名密码）。user_id（自增）,username,password(base64加密）,avatar_url（默认url头像）,created_at,token(可为空）
 
-3. 文章表articles：
+2. 文章表articles：
 article_id（自增）,user_id,title,content,cover_url,visit_count（0）,like_count（0）,comment_count（0）,created_at（写文章时间）
 
-4. 评论表comments:comment_id（自增）,user_id,avatar_url,article_id,parent_id,like_count（0）,child_count（0）,content,created_at
-5. 用户点赞文章表user_like_article:user_id,article_id
+3. 评论表comments:comment_id（自增）,user_id,article_id,parent_id,like_count（0）,child_count（0）,content,created_at
+4. 用户点赞文章表user_like_article:user_id,article_id

@@ -7,6 +7,8 @@ public class Article {
     private int article_id;
     // 用户ID
     private int user_id;
+    // 用户名
+    private String username;
     // 标题
     private String title;
     // 内容
@@ -17,20 +19,17 @@ public class Article {
     private int visit_count;
     // 点赞数
     private int like_count;
+    // 评论数
+    private int comment_count;
     // 创建时间
-    private DateTime created_at;
+    private String created_at;
 
     public Article(){}
 
     public Article(String title, String content, String cover_url) {
-        this.article_id = 0;
-        this.user_id = 0;
         this.title = title;
         this.content = content;
         this.cover_url = cover_url;
-        this.visit_count = 0;
-        this.like_count = 0;
-        this.created_at = DateTime.of(0);
     }
 
     /**
@@ -63,6 +62,22 @@ public class Article {
      */
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    /**
+     * 获取
+     * @return username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * 设置
+     * @param username
+     */
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
@@ -147,9 +162,25 @@ public class Article {
 
     /**
      * 获取
+     * @return comment_count
+     */
+    public int getComment_count() {
+        return comment_count;
+    }
+
+    /**
+     * 设置
+     * @param comment_count
+     */
+    public void setComment_count(int comment_count) {
+        this.comment_count = comment_count;
+    }
+
+    /**
+     * 获取
      * @return created_at
      */
-    public DateTime getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
@@ -157,11 +188,11 @@ public class Article {
      * 设置
      * @param created_at
      */
-    public void setCreated_at(DateTime created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
     public String toString() {
-        return "Article{article_id = " + article_id + ", user_id = " + user_id + ", title = " + title + ", content = " + content + ", cover_url = " + cover_url + ", visit_count = " + visit_count + ", like_count = " + like_count + ", created_at = " + created_at + "}";
+        return "Article{article_id = " + article_id + ", user_id = " + user_id + ", username = " + username + ", title = " + title + ", content = " + content + ", cover_url = " + cover_url + ", visit_count = " + visit_count + ", like_count = " + like_count + ", comment_count = " + comment_count + ", created_at = " + created_at + "}";
     }
 }
