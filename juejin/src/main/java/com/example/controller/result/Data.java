@@ -7,7 +7,7 @@ public class Data<T> {
     private List<T> items;
     private Integer total;
 
-    public Data(Object task){
+    public Data(Object task) {
         this.task = task;
         this.items = null;
         this.total = null;
@@ -30,6 +30,7 @@ public class Data<T> {
 
     /**
      * 获取
+     *
      * @return items
      */
     public List<T> getItems() {
@@ -38,6 +39,7 @@ public class Data<T> {
 
     /**
      * 设置
+     *
      * @param items
      */
     public void setItems(List<T> items) {
@@ -46,6 +48,7 @@ public class Data<T> {
 
     /**
      * 获取
+     *
      * @return total
      */
     public Integer getTotal() {
@@ -54,6 +57,7 @@ public class Data<T> {
 
     /**
      * 设置
+     *
      * @param total
      */
     public void setTotal(Integer total) {
@@ -62,6 +66,7 @@ public class Data<T> {
 
     /**
      * 获取
+     *
      * @return task
      */
     public Object getTask() {
@@ -70,6 +75,7 @@ public class Data<T> {
 
     /**
      * 设置
+     *
      * @param task
      */
     public void setTask(Object task) {

@@ -2,7 +2,7 @@ package com.example.domain;
 
 import cn.hutool.core.date.DateTime;
 
-public class User  {
+public class User {
     private String username;
     private String password;
 
@@ -16,12 +16,12 @@ public class User  {
     private String token;
 
 
-    public User(String username,String password){
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User(String username, String password, int user_id, String avatar_url, String created_at,String token) {
+    public User(String username, String password, int user_id, String avatar_url, String created_at, String token) {
         this.username = username;
         this.password = password;
         this.user_id = user_id;
@@ -36,6 +36,7 @@ public class User  {
 
     /**
      * 获取
+     *
      * @return username
      */
     public String getUsername() {
@@ -44,6 +45,7 @@ public class User  {
 
     /**
      * 设置
+     *
      * @param username
      */
     public void setUsername(String username) {
@@ -52,6 +54,7 @@ public class User  {
 
     /**
      * 获取
+     *
      * @return password
      */
     public String getPassword() {
@@ -60,6 +63,7 @@ public class User  {
 
     /**
      * 设置
+     *
      * @param password
      */
     public void setPassword(String password) {
@@ -68,6 +72,7 @@ public class User  {
 
     /**
      * 获取
+     *
      * @return user_id
      */
     public int getUser_id() {
@@ -76,6 +81,7 @@ public class User  {
 
     /**
      * 设置
+     *
      * @param user_id
      */
     public void setUser_id(int user_id) {
@@ -84,6 +90,7 @@ public class User  {
 
     /**
      * 获取
+     *
      * @return avatar_url
      */
     public String getAvatar_url() {
@@ -92,6 +99,7 @@ public class User  {
 
     /**
      * 设置
+     *
      * @param avatar_url
      */
     public void setAvatar_url(String avatar_url) {
@@ -100,6 +108,7 @@ public class User  {
 
     /**
      * 获取
+     *
      * @return created_at
      */
     public String getCreated_at() {
@@ -108,6 +117,7 @@ public class User  {
 
     /**
      * 设置
+     *
      * @param created_at
      */
     public void setCreated_at(String created_at) {
@@ -116,6 +126,7 @@ public class User  {
 
     /**
      * 获取
+     *
      * @return token
      */
     public String getToken() {
@@ -124,6 +135,7 @@ public class User  {
 
     /**
      * 设置
+     *
      * @param token
      */
     public void setToken(String token) {

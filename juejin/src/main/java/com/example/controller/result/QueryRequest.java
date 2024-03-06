@@ -5,19 +5,23 @@ import java.util.List;
 public class QueryRequest<T> {
     private Base base;
     private Data<T> data;
-    public QueryRequest(Base base,List<T> item, Integer total){
+
+    public QueryRequest(Base base, List<T> item, Integer total) {
         this.base = base;
-        this.data = new Data(item,total);
+        this.data = new Data(item, total);
     }
-    public QueryRequest(Base base,List<T> item, Integer total,Object task){
+
+    public QueryRequest(Base base, List<T> item, Integer total, Object task) {
         this.base = base;
-        this.data = new Data(item,total,task);
+        this.data = new Data(item, total, task);
     }
-    public QueryRequest(Base base,Object task){
+
+    public QueryRequest(Base base, Object task) {
         this.base = base;
         this.data = new Data(task);
     }
-    public QueryRequest(Base base){
+
+    public QueryRequest(Base base) {
         this.base = base;
         this.data = null;
     }
@@ -25,6 +29,7 @@ public class QueryRequest<T> {
 
     /**
      * 获取
+     *
      * @return base
      */
     public Base getBase() {
@@ -33,6 +38,7 @@ public class QueryRequest<T> {
 
     /**
      * 设置
+     *
      * @param base
      */
     public void setBase(Base base) {
@@ -41,6 +47,7 @@ public class QueryRequest<T> {
 
     /**
      * 获取
+     *
      * @return data
      */
     public Data<T> getData() {
@@ -49,12 +56,12 @@ public class QueryRequest<T> {
 
     /**
      * 设置
+     *
      * @param data
      */
     public void setData(Data<T> data) {
         this.data = data;
     }
-
 
 
     public String toString() {

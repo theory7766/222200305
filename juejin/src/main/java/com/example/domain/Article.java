@@ -24,7 +24,8 @@ public class Article {
     // 创建时间
     private String created_at;
 
-    public Article(){}
+    public Article() {
+    }
 
     public Article(String title, String content, String cover_url) {
         this.title = title;
@@ -34,6 +35,7 @@ public class Article {
 
     /**
      * 获取
+     *
      * @return article_id
      */
     public int getArticle_id() {
@@ -42,6 +44,7 @@ public class Article {
 
     /**
      * 设置
+     *
      * @param article_id
      */
     public void setArticle_id(int article_id) {
@@ -50,6 +53,7 @@ public class Article {
 
     /**
      * 获取
+     *
      * @return user_id
      */
     public int getUser_id() {
@@ -58,6 +62,7 @@ public class Article {
 
     /**
      * 设置
+     *
      * @param user_id
      */
     public void setUser_id(int user_id) {
@@ -66,6 +71,7 @@ public class Article {
 
     /**
      * 获取
+     *
      * @return username
      */
     public String getUsername() {
@@ -74,6 +80,7 @@ public class Article {
 
     /**
      * 设置
+     *
      * @param username
      */
     public void setUsername(String username) {
@@ -82,6 +89,7 @@ public class Article {
 
     /**
      * 获取
+     *
      * @return title
      */
     public String getTitle() {
@@ -90,6 +98,7 @@ public class Article {
 
     /**
      * 设置
+     *
      * @param title
      */
     public void setTitle(String title) {
@@ -98,6 +107,7 @@ public class Article {
 
     /**
      * 获取
+     *
      * @return content
      */
     public String getContent() {
@@ -106,6 +116,7 @@ public class Article {
 
     /**
      * 设置
+     *
      * @param content
      */
     public void setContent(String content) {
@@ -114,6 +125,7 @@ public class Article {
 
     /**
      * 获取
+     *
      * @return cover_url
      */
     public String getCover_url() {
@@ -122,6 +134,7 @@ public class Article {
 
     /**
      * 设置
+     *
      * @param cover_url
      */
     public void setCover_url(String cover_url) {
@@ -130,6 +143,7 @@ public class Article {
 
     /**
      * 获取
+     *
      * @return visit_count
      */
     public int getVisit_count() {
@@ -138,6 +152,7 @@ public class Article {
 
     /**
      * 设置
+     *
      * @param visit_count
      */
     public void setVisit_count(int visit_count) {
@@ -146,6 +161,7 @@ public class Article {
 
     /**
      * 获取
+     *
      * @return like_count
      */
     public int getLike_count() {
@@ -154,6 +170,7 @@ public class Article {
 
     /**
      * 设置
+     *
      * @param like_count
      */
     public void setLike_count(int like_count) {
@@ -162,6 +179,7 @@ public class Article {
 
     /**
      * 获取
+     *
      * @return comment_count
      */
     public int getComment_count() {
@@ -170,6 +188,7 @@ public class Article {
 
     /**
      * 设置
+     *
      * @param comment_count
      */
     public void setComment_count(int comment_count) {
@@ -178,6 +197,7 @@ public class Article {
 
     /**
      * 获取
+     *
      * @return created_at
      */
     public String getCreated_at() {
@@ -186,6 +206,7 @@ public class Article {
 
     /**
      * 设置
+     *
      * @param created_at
      */
     public void setCreated_at(String created_at) {

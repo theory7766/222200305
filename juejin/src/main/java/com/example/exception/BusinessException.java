@@ -1,6 +1,6 @@
 package com.example.exception;
 
-public class BusinessException extends RuntimeException{
+public class BusinessException extends RuntimeException {
     private String code;
 
     public String getCode() {
@@ -16,7 +16,7 @@ public class BusinessException extends RuntimeException{
         this.code = code;
     }
 
-    public BusinessException(String code,String message, Throwable cause) {
+    public BusinessException(String code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }

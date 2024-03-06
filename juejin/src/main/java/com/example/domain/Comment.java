@@ -45,6 +45,7 @@ public class Comment {
 
     /**
      * 获取
+     *
      * @return comment_id
      */
     public int getComment_id() {
@@ -53,6 +54,7 @@ public class Comment {
 
     /**
      * 设置
+     *
      * @param comment_id
      */
     public void setComment_id(int comment_id) {
@@ -61,6 +63,7 @@ public class Comment {
 
     /**
      * 获取
+     *
      * @return user_id
      */
     public int getUser_id() {
@@ -69,6 +72,7 @@ public class Comment {
 
     /**
      * 设置
+     *
      * @param user_id
      */
     public void setUser_id(int user_id) {
@@ -77,6 +81,7 @@ public class Comment {
 
     /**
      * 获取
+     *
      * @return username
      */
     public String getUsername() {
@@ -85,6 +90,7 @@ public class Comment {
 
     /**
      * 设置
+     *
      * @param username
      */
     public void setUsername(String username) {
@@ -93,6 +99,7 @@ public class Comment {
 
     /**
      * 获取
+     *
      * @return avatar_url
      */
     public String getAvatar_url() {
@@ -101,6 +108,7 @@ public class Comment {
 
     /**
      * 设置
+     *
      * @param avatar_url
      */
     public void setAvatar_url(String avatar_url) {
@@ -109,6 +117,7 @@ public class Comment {
 
     /**
      * 获取
+     *
      * @return article_id
      */
     public int getArticle_id() {
@@ -117,6 +126,7 @@ public class Comment {
 
     /**
      * 设置
+     *
      * @param article_id
      */
     public void setArticle_id(int article_id) {
@@ -125,6 +135,7 @@ public class Comment {
 
     /**
      * 获取
+     *
      * @return parent_id
      */
     public int getParent_id() {
@@ -133,6 +144,7 @@ public class Comment {
 
     /**
      * 设置
+     *
      * @param parent_id
      */
     public void setParent_id(int parent_id) {
@@ -141,6 +153,7 @@ public class Comment {
 
     /**
      * 获取
+     *
      * @return like_count
      */
     public int getLike_count() {
@@ -149,6 +162,7 @@ public class Comment {
 
     /**
      * 设置
+     *
      * @param like_count
      */
     public void setLike_count(int like_count) {
@@ -157,6 +171,7 @@ public class Comment {
 
     /**
      * 获取
+     *
      * @return child_count
      */
     public int getChild_count() {
@@ -165,6 +180,7 @@ public class Comment {
 
     /**
      * 设置
+     *
      * @param child_count
      */
     public void setChild_count(int child_count) {
@@ -173,6 +189,7 @@ public class Comment {
 
     /**
      * 获取
+     *
      * @return content
      */
     public String getContent() {
@@ -181,6 +198,7 @@ public class Comment {
 
     /**
      * 设置
+     *
      * @param content
      */
     public void setContent(String content) {
@@ -189,6 +207,7 @@ public class Comment {
 
     /**
      * 获取
+     *
      * @return created_at
      */
     public String getCreated_at() {
@@ -197,6 +216,7 @@ public class Comment {
 
     /**
      * 设置
+     *
      * @param created_at
      */
     public void setCreated_at(String created_at) {

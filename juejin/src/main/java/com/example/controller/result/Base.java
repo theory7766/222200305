@@ -4,11 +4,11 @@ public class Base {
     private String code;
     private String msg;
 
-    public static Base success(){
-        return new Base(Code.SUCCESS,"success");
+    public static Base success() {
+        return new Base(Code.SUCCESS, "success");
     }
 
-    public static Base loginFailure(){
+    public static Base loginFailure() {
         return new Base(Code.ERROR, "username or password error");
     }
 
@@ -19,6 +19,7 @@ public class Base {
 
     /**
      * 获取
+     *
      * @return code
      */
     public String getCode() {
@@ -27,6 +28,7 @@ public class Base {
 
     /**
      * 设置
+     *
      * @param code
      */
     public void setCode(String code) {
@@ -35,6 +37,7 @@ public class Base {
 
     /**
      * 获取
+     *
      * @return msg
      */
     public String getMsg() {
@@ -43,6 +46,7 @@ public class Base {
 
     /**
      * 设置
+     *
      * @param msg
      */
     public void setMsg(String msg) {

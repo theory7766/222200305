@@ -1,6 +1,6 @@
 package com.example.exception;
 
-public class SystemException extends RuntimeException{
+public class SystemException extends RuntimeException {
     private String code;
 
 
@@ -9,13 +9,14 @@ public class SystemException extends RuntimeException{
         this.code = code;
     }
 
-    public SystemException(String code,String message, Throwable cause) {
+    public SystemException(String code, String message, Throwable cause) {
         super(message, cause);
         this.code = code;
     }
 
     /**
      * 获取
+     *
      * @return code
      */
     public String getCode() {
@@ -24,6 +25,7 @@ public class SystemException extends RuntimeException{
 
     /**
      * 设置
+     *
      * @param code
      */
     public void setCode(String code) {

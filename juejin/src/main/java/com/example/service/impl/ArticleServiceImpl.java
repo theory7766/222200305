@@ -29,33 +29,34 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public int checkToken(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
-        System.out.println("token:"+token);
-        if (token == null){
-            throw new BusinessException(Code.ERROR,"token message is empty");
-        }else {
+        System.out.println("token:" + token);
+        if (token == null) {
+            throw new BusinessException(Code.ERROR, "token message is empty");
+        } else {
             int user_id = articleDao.getUserIdByToken(token);
-            if (user_id <= 0){
-                throw new BusinessException(Code.ERROR,"token message error");
-            }else {
+            if (user_id <= 0) {
+                throw new BusinessException(Code.ERROR, "token message error");
+            } else {
                 return user_id;
             }
         }
     }
+
     @Override
     public List<Article> getArticleList(int getHottest, int count) {
         List<Article> articles = new ArrayList<Article>();
-        if (count <= 0){
+        if (count <= 0) {
             throw new BusinessException(Code.ERROR, "count must > 0");
         }
-        if (getHottest == 1){
+        if (getHottest == 1) {
             articles = articleDao.getArticleByVisitCount(count);
         } else {
             articles = articleDao.getArticleByCreatedAt(count);
         }
-        if (articles==null){
+        if (articles == null) {
             throw new BusinessException(Code.ERROR, "文章表为空");
         } else {
-            for (int i=0; i<articles.size(); i++){
+            for (int i = 0; i < articles.size(); i++) {
                 User user = userDao.getUserInformationByUserId(articles.get(i).getUser_id());
                 articles.get(i).setUsername(user.getUsername());
             }
@@ -66,8 +67,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Article getArticleById(int article_id) {
         Article article = articleDao.getArticleById(article_id);
-        if (article == null){
-            throw new BusinessException(Code.ERROR,"article_id error");
+        if (article == null) {
+            throw new BusinessException(Code.ERROR, "article_id error");
         } else {
             User user = userDao.getUserInformationByUserId(article.getUser_id());
             article.setUsername(user.getUsername());
@@ -79,8 +80,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Comment> getCommentListByArticleId(int article_id) {
         List<Comment> comments = articleDao.getCommentListByArticleId(article_id);
-        if (comments!=null){
-            for (int i=0; i<comments.size(); i++){
+        if (comments != null) {
+            for (int i = 0; i < comments.size(); i++) {
                 User user = userDao.getUserInformationByUserId(comments.get(i).getUser_id());
                 comments.get(i).setUsername(user.getUsername());
                 comments.get(i).setAvatar_url(user.getAvatar_url());
@@ -92,9 +93,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getArticleListByUserId(int user_id) {
         List<Article> articles = articleDao.getArticleListByUserId(user_id);
-        if (articles != null){
+        if (articles != null) {
             User user = userDao.getUserInformationByUserId(user_id);
-            for (int i=0;i<articles.size();i++){
+            for (int i = 0; i < articles.size(); i++) {
                 articles.get(i).setUsername(user.getUsername());
             }
         }
@@ -104,14 +105,14 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getUserLikeArticleIdByUserId(int user_id) {
         List<Integer> articles_id_list = articleDao.getUserLikeArticleIdByUserId(user_id);
-        if (articles_id_list == null){
-            throw new BusinessException(Code.ERROR,"该用户没点赞文章");
+        if (articles_id_list == null) {
+            throw new BusinessException(Code.ERROR, "该用户没点赞文章");
         } else {
             List<Article> articles = new ArrayList<Article>();
-            for (int i = 0; i<articles_id_list.size(); i++){
+            for (int i = 0; i < articles_id_list.size(); i++) {
                 Article article = articleDao.getArticleById(articles_id_list.get(i));
-                if (article == null){
-                    throw new BusinessException(Code.ERROR,"用户点赞的文章在articles表中找不到");
+                if (article == null) {
+                    throw new BusinessException(Code.ERROR, "用户点赞的文章在articles表中找不到");
                 } else {
                     articles.add(article);
                 }
@@ -119,7 +120,6 @@ public class ArticleServiceImpl implements ArticleService {
             return articles;
         }
     }
-
 
 
     @Override
@@ -130,8 +130,8 @@ public class ArticleServiceImpl implements ArticleService {
         String formattedDateTime = sdf.format(DateTime.now());
         article.setCreated_at(formattedDateTime);
         int set = articleDao.insertArticle(article);
-        if (set == 0){
-            throw new BusinessException(Code.ERROR,"insert article failed");
+        if (set == 0) {
+            throw new BusinessException(Code.ERROR, "insert article failed");
         } else {
             return true;
         }

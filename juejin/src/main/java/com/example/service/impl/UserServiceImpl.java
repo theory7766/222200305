@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,17 +30,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean register(@RequestBody User user) {
         User newUser = userDao.getByName(user.getUsername());
-        if (newUser!=null) {
+        if (newUser != null) {
             throw new BusinessException(Code.ERROR, "the username already exists");
-        }else if (user.getPassword().length() <= 6){
+        } else if (user.getPassword().length() <= 6) {
             throw new BusinessException(Code.ERROR,
-                        "the length of password must bigger than 6");
-        }else {
+                    "the length of password must bigger than 6");
+        } else {
             // 使用bcript加密
             String newPassword = DigestUtil.bcrypt(user.getPassword());
 //            System.out.println(newPassword);
             user.setPassword(newPassword);
-           // 将数据保存进用户表users中
+            // 将数据保存进用户表users中
             DateTime created_at = DateTime.now();
             String mysqlFormat = "yyyy-MM-dd HH:mm:ss";
             SimpleDateFormat sdf = new SimpleDateFormat(mysqlFormat);
@@ -52,19 +54,20 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
     // 用户登录
     @Override
     public String login(@RequestBody User user) {
         User matchUser = userDao.getByName(user.getUsername());
-        if (matchUser == null){
-            throw new BusinessException(Code.ERROR,"username error!");
+        if (matchUser == null) {
+            throw new BusinessException(Code.ERROR, "username error!");
         }
         // 校验密码
-        if (!DigestUtil.bcryptCheck(user.getPassword(),matchUser.getPassword())){
-            throw new BusinessException(Code.ERROR,"password error!");
-        }else {
-           // 非首次认证
-           String token = userDao.getToken(user.getUsername());
+        if (!DigestUtil.bcryptCheck(user.getPassword(), matchUser.getPassword())) {
+            throw new BusinessException(Code.ERROR, "password error!");
+        } else {
+            // 非首次认证
+            String token = userDao.getToken(user.getUsername());
             if (token == null || token.compareTo("NULL") == 0) {
 //                System.out.println("进行首次token制作保存：");
                 Sign sign = SecureUtil.sign(SignAlgorithm.MD5withRSA);
@@ -81,26 +84,30 @@ public class UserServiceImpl implements UserService {
             return token;
         }
     }
+
     // 获取用户信息
     @Override
-    public User getUserInformation(int user_id) {
+    public HashMap<String, String> getUserInformation(int user_id) {
         User user = userDao.getUserInformationByUserId(user_id);
-        if (user == null){
-            throw new BusinessException(Code.ERROR,"get information failed");
+        if (user == null) {
+            throw new BusinessException(Code.ERROR, "get information failed");
         } else {
-            return user;
+            HashMap<String, String> task = new HashMap<>();
+            task.put("avatar_url", user.getAvatar_url());
+            task.put("username", user.getUsername());
+            return task;
         }
     }
 
     @Override
     public boolean updateUsernameByUserId(int user_id, String username) {
         User user = userDao.getByName(username);
-        if (user != null){
+        if (user != null) {
             throw new BusinessException(Code.ERROR, "the username already exists");
         } else {
-            int set = userDao.setUsernameByUserId(username,user_id);
-            if (set == 0){
-                throw new BusinessException(Code.ERROR,"update username failed");
+            int set = userDao.setUsernameByUserId(username, user_id);
+            if (set == 0) {
+                throw new BusinessException(Code.ERROR, "update username failed");
             } else {
                 return true;
             }
@@ -109,14 +116,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updatePasswordByUserId(int user_id, String password) {
-        if (password.length() <= 6){
+        if (password.length() <= 6) {
             throw new BusinessException(Code.ERROR,
                     "the length of password must bigger than 6");
         } else {
             String newPassword = DigestUtil.bcrypt(password);
-            int set = userDao.setPasswordByUserId(newPassword,user_id);
-            if (set == 0){
-                throw new BusinessException(Code.ERROR,"update password failed");
+            int set = userDao.setPasswordByUserId(newPassword, user_id);
+            if (set == 0) {
+                throw new BusinessException(Code.ERROR, "update password failed");
             } else {
                 return true;
             }
@@ -125,9 +132,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updateAvatarUrlByUserId(int user_id, String avatar_url) {
-        int set = userDao.setAvatarUrlByUserId(avatar_url,user_id);
-        if (set == 0){
-            throw new BusinessException(Code.ERROR,"update avatar_url failed");
+        int set = userDao.setAvatarUrlByUserId(avatar_url, user_id);
+        if (set == 0) {
+            throw new BusinessException(Code.ERROR, "update avatar_url failed");
         } else {
             return true;
         }
